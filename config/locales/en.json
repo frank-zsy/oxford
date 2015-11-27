@@ -1,0 +1,15 @@
+{
+	"Welcome": "Welcome",
+	"A brand new app.": "A brand new app.",
+
+  "NavTitle": "How far from a star?",
+  "HomePage": "Home",
+  "AboutPage": "About",
+
+  "AddStar_StarNameLabel": "Star name",
+  "AddStar_StarNamePlaceholder": "name",
+  "AddStar_AddStarChooseFileButtonName": "Choose a file",
+  "AddStar_Submit": "Submit",
+  "AddStar_InputNameAlert": "Pls enter the name"
+
+}

@@ -1,0 +1,15 @@
+<div class="page-header"></div>
+
+<form class="form-horizontal col-xs-8 col-xs-offset-2 col-md-4 col-md-offset-4" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="starName" class="col-md-4 col-xs-5 control-label text-center text-white"><%=__('AddStar_StarNameLabel')%></label>
+    <div class="col-md-8 col-xs-7">
+      <input type="text" class="form-control" id="addStar_StarName" name="starName" placeholder="<%=__('AddStar_StarNamePlaceholder')%>">
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="button" class="btn btn-info col-xs-5" id="addStar_ChooseFileBtn"><%=__('AddStar_AddStarChooseFileButtonName')%></button>
+    <input type="file" id="addStar_StarPhoto" name="starPhoto" class="hidden">
+    <button type="submit" id="addStar_Submit" class="btn btn-success col-md-5 col-md-offset-2 col-xs-5 col-xs-offset-2"><%=__('AddStar_Submit')%></button>
+  </div>
+</form>

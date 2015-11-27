@@ -1,0 +1,15 @@
+{
+  "Welcome": "欢迎",
+  "A brand new app.": "一个全新的应用",
+
+  "NavTitle": "你离明星有多远？",
+  "HomePage": "主页",
+  "AboutPage": "关于",
+
+  "AddStar_StarNameLabel": "明星姓名",
+  "AddStar_StarNamePlaceholder": "姓名",
+  "AddStar_AddStarChooseFileButtonName": "选择图片",
+  "AddStar_Submit": "提交",
+  "AddStar_InputNameAlert": "请输入一个名字"
+
+}

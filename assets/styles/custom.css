@@ -1,0 +1,14 @@
+@media (min-width: 768px) {
+  .container {
+    max-width: 750px;
+  }
+}
+
+.body {
+  background-size: cover;
+  -webkit-background-size: cover;
+}
+
+.text-white {
+  color: #f5f5f5;
+}
