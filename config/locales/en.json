@@ -1,7 +1,7 @@
 {
 	"Welcome": "Welcome",
 	"A brand new app.": "A brand new app.",
-
+  "Title": "How far from a star?",
   "NavTitle": "How far from a star?",
   "HomePage": "Home",
   "AboutPage": "About",
@@ -10,6 +10,19 @@
   "AddStar_StarNamePlaceholder": "name",
   "AddStar_AddStarChooseFileButtonName": "Choose a file",
   "AddStar_Submit": "Submit",
-  "AddStar_InputNameAlert": "Pls enter the name"
+  "AddStar_InputNameAlert": "Pls enter the name",
+
+  "Index_ChooseGender": "I am ...",
+  "Index_BecomeWho": "I want to be...",
+  "Index_Female": "♀Female Star",
+  "Index_Male": "♂Male Star",
+  "Index_ChoosePhoto": "My Photo(Front)",
+  "Index_AddPhoto": "⊕Add a photo",
+  "Index_Compare": "Compare us!",
+  "Index_Result": "Compare Result",
+  "Index_TryAgain": "Try again",
+  "Index_Close": "Close",
+  "Index_Process": "Processing",
+  "Footer": "Developed by Frank Zhao"
 
 }

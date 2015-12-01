@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>New Sails App</title>
+    <title><%=__('Title')%></title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta charset="utf-8">
@@ -58,9 +58,15 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+    <div class="page-header"></div>
 
     <%- body %>
 
+    <!--<footer class="footer">-->
+      <!--<div class="container">-->
+        <!--<p class="text-muted"></p>-->
+      <!--</div>-->
+    <!--</footer>-->
     <!--
         Client-side Templates
         ========================
@@ -111,9 +117,11 @@
     -->
 
     <!--SCRIPTS-->
-    <script src="/js/_jquery.min.js"></script>
-    <script src="/js/addStar.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/common/_jquery.min.js"></script>
+    <script src="/js/common/ajaxfileupload.js"></script>
+    <script src="/js/common/bootstrap.min.js"></script>
+    <script src="/js/d-addStar.js"></script>
+    <script src="/js/d-index.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

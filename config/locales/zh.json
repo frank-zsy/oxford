@@ -1,6 +1,7 @@
 {
   "Welcome": "欢迎",
   "A brand new app.": "一个全新的应用",
+  "Title": "你离明星有多远？",
 
   "NavTitle": "你离明星有多远？",
   "HomePage": "主页",
@@ -10,6 +11,18 @@
   "AddStar_StarNamePlaceholder": "姓名",
   "AddStar_AddStarChooseFileButtonName": "选择图片",
   "AddStar_Submit": "提交",
-  "AddStar_InputNameAlert": "请输入一个名字"
+  "AddStar_InputNameAlert": "请输入一个名字",
 
+  "Index_ChooseGender": "我要变...",
+  "Index_BecomeWho": "我想变成...",
+  "Index_Female": "♀女明星",
+  "Index_Male": "♂男明星",
+  "Index_ChoosePhoto": "我的照片（正面清晰）",
+  "Index_AddPhoto": "⊕添加照片",
+  "Index_Compare": "比较一下吧",
+  "Index_Result": "对比结果",
+  "Index_TryAgain": "再试一次",
+  "Index_Close": "关闭页面",
+  "Index_Process": "正在处理",
+  "Footer": "由Frank开发"
 }

@@ -20,14 +20,58 @@ module.exports = {
 
     } else if (method == 'POST') {
       var params = req.allParams();
-      console.log(JSON.stringify(params));
+      var starName = params.starName;
       req.file('starPhoto').upload({
         dirname: 'starPhoto/',
         maxBytes: 4000 * 1000
       }, function(err, files) {
-        if (err) {return res.badRequst();}
-        console.log(files[0]);
-        return res.view('addStar');
+        if (err || files.length == 0) {return res.badRequst();}
+        var filePath = files[0].fd;
+
+        var image = require('fs').readFileSync(filePath).toString('binary');
+        var opt = {
+          method: "POST",
+          host: "api.projectoxford.ai",
+          port: 443,
+          path: "/face/v0/detections?analyzesFaceLandmarks=true&analyzesAge=true&analyzesGender=true&analyzesHeadPose=true",
+          headers: {
+            "Content-Type": 'application/octet-stream',
+            "Ocp-Apim-Subscription-Key": sails.config.oxfordToken,
+            "Content-Length": image.length
+          }
+        };
+
+        var data = "";
+        var oxReq = require('https').request(opt, function (serverFeedback) {
+          if (serverFeedback.statusCode == 200) {
+            serverFeedback.on('data', function (chunck) {
+              data += chunck;
+            }).on('end', function () {
+              // Receive face data from oxford server
+              var faceInfo = JSON.parse(data)[0];
+              Stars.findOne({name: starName}).exec(function(err, star) {
+                if (err) {return res.jsonx(err);}
+                if (star) {return res.jsonx({msg: starName + ' already exists.'});}
+                Stars.create({
+                  name: starName,
+                  faceId: faceInfo.faceId,
+                  faceRectangle: faceInfo.faceRectangle,
+                  faceLandmarks: faceInfo.faceLandmarks,
+                  attributes: faceInfo.attributes,
+                  filePath: filePath
+                }).exec(function (err, star) {
+                  if (err || !star) {return res.jsonx(err);}
+                  return res.jsonx(star);
+                });
+              });
+            });
+          } else {
+            return res.jsonx(serverFeedback);
+          }
+        });
+
+        oxReq.write(image + '\n', 'binary');
+        oxReq.end();
       });
 
     } else {
@@ -66,6 +110,17 @@ module.exports = {
 
     oxReq.write(image + '\n', 'binary');
     oxReq.end();
+  },
+
+  glimpse :function(req, res) {
+    var sendBak = {};
+    Stars.find({}, function (err, stars) {
+      if (err || !stars) {return res.jsonx(err);}
+      for(var star in stars) {
+        sendBak[stars[star].name] = FaceProcessor.baseProcessor(stars[star]);
+      }
+      res.jsonx({data: sendBak});
+    });
   }
 
 };

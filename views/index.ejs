@@ -1,0 +1,111 @@
+<div class="container">
+
+  <div class="panel panel-success" id="processPanel">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%=__("Index_Process")%></h3>
+    </div>
+    <div class="panel-body" align="center">
+      <img src="/images/loading.gif" />
+    </div>
+  </div>
+
+  <div class="panel panel-success" id="resultPanel">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%=__("Index_Result")%></h3>
+    </div>
+    <div class="panel-body">
+      <table class="table-striped">
+        <tr class="label-info"><td class="result-td text-center"></td></tr>
+        <tr><td class="result-td text-center"></td></tr>
+        <tr class="label-info"><td class="result-td text-center"></td></tr>
+        <tr><td class="result-td text-center"></td></tr>
+      </table>
+
+      <div>
+        <button type="button" onclick="window.location='/'" class="btn btn-success col-xs-4 col-xs-offset-1"><%=__("Index_TryAgain")%></button>
+        <button type="button" onclick="WeixinJSBridge.call('closeWindow');" class="btn btn-danger col-xs-4 col-xs-offset-2"><%=__("Index_Close")%></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 选择照片 -->
+  <div class="panel panel-success" id="choosePhotoPanel">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%=__("Index_ChoosePhoto")%></h3>
+    </div>
+    <div class="panel-body">
+      <img class="img-responsive own-photo center-block" id="userPhotoImg" />
+      <input type="file" class="hidden" id="userPhotoFile" name="userPhoto" />
+      <button type="button" class="btn btn-success col-xs-6 col-xs-offset-3" id="userPhotoBtn"><%=__("Index_AddPhoto")%></button>
+    </div>
+  </div>
+
+  <!-- 选择性别 -->
+  <div class="panel panel-success" id="chooseGenderPanel">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%=__("Index_ChooseGender")%></h3>
+    </div>
+    <div class="panel-body">
+      <div class="col-xs-5">
+        <label>
+          <input type="radio" id="male" name="gender" value="male" checked/><%=__("Index_Male")%>
+        </label>
+      </div>
+      <div class="col-xs-5 col-xs-offset-1">
+        <label>
+          <input type="radio" id="female" name="gender" value="female"/><%=__("Index_Female")%>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 选择明星 -->
+  <div class="panel panel-success" id="chooseStarPanel">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%=__("Index_BecomeWho")%></h3>
+    </div>
+    <div class="panel-body">
+      <div id="starCarousel" class="carousel slide">
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators">
+          <li data-target="#starCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#starCarousel" data-slide-to="1"></li>
+          <li data-target="#starCarousel" data-slide-to="2"></li>
+          <li data-target="#starCarousel" data-slide-to="3"></li>
+        </ol>
+        <!-- 轮播（Carousel）项目 -->
+        <div class="carousel-inner">
+          <div class="item active" id="item-0">
+            <img alt="First slide" class="carousel-image center-block">
+            <div class="carousel-caption"></div>
+          </div>
+          <div class="item" id="item-1">
+            <img alt="Second slide" class="carousel-image center-block">
+            <div class="carousel-caption"></div>
+          </div>
+          <div class="item" id="item-2">
+            <img alt="Third slide" class="carousel-image center-block">
+            <div class="carousel-caption"></div>
+          </div>
+          <div class="item" id="item-3">
+            <img alt="Fourth slide" class="carousel-image center-block">
+            <div class="carousel-caption"></div>
+          </div>
+        </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a class="carousel-control left" href="#starCarousel"
+           data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#starCarousel"
+           data-slide="next">&rsaquo;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 提交 -->
+  <div>
+    <button class="btn btn-success col-xs-6 col-xs-offset-3" id="compareSubmit">
+      <%=__("Index_Compare")%>
+    </button>
+  </div>
+
+</div>
