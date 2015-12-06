@@ -93,6 +93,9 @@ if (!imagecopy($targetImg, $img, 0, 0, $newLeft, $newTop, $newWidth, $newHeight)
 }
 
 $outputDir = dirname(__DIR__) . "/assets/images/marked/";
+if(!is_dir($outputDir)) {
+  mkdir($outputDir, 755, true);
+}
 $fileName = strstr($fileInfo['basename'], $extension, true) . "marked.png";
 
 $newFilePath = $outputDir . $fileName;

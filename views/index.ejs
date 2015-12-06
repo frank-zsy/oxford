@@ -30,7 +30,7 @@
 
       <div>
         <button type="button" onclick="window.location='/'" class="btn btn-success col-xs-4 col-xs-offset-1"><%=__("Index_TryAgain")%></button>
-        <button type="button" onclick="WeixinJSBridge.call('closeWindow');" class="btn btn-danger col-xs-4 col-xs-offset-2"><%=__("Index_Close")%></button>
+        <button type="button" onclick="if(WeixinJSBridge){WeixinJSBridge.call('closeWindow');}else{window.close();}" class="btn btn-danger col-xs-4 col-xs-offset-2"><%=__("Index_Close")%></button>
       </div>
     </div>
   </div>
