@@ -1,0 +1,43 @@
+# Set the base image to CentOS
+FROM tutum/centos:centos6
+
+# File Author / Maintainer
+MAINTAINER Frank / Frank
+
+# Change work dir
+COPY . /app
+
+# Install some tools for use
+RUN yum install -y gcc make gcc-c++ openssl-devel wget tar mongodb
+
+# Install node
+WORKDIR /
+RUN wget http://nodejs.org/dist/v0.12.2/node-v0.12.2.tar.gz
+RUN tar -zxf node-v0.12.2.tar.gz
+WORKDIR /node-v0.12.2
+RUN ./configure
+RUN make && make install
+RUN node -v
+
+# Install php
+WORKDIR /
+# Install external libs
+RUN yum install -y libjpeg libjpeg-devel libpng libpng-devel libxml2 libxml2-devel libcurl libcurl-devel
+RUN wget http://cdn.frankzhao.org/src/php-5.6.16.tar.gz
+RUN tar -zxf php-5.6.16.tar.gz
+WORKDIR /php-5.6.16
+RUN ./configure --prefix=/usr/local/php --enable-fpm --disable-rpath --disable-debug --disable-fileinfo --with-curl --with-zlib --with-jpeg-dir=/usr/lib64/ --with-gd --enable-exif
+RUN make && make install
+RUN ln -s /usr/local/php/bin/php /usr/bin/
+RUN php -v
+
+# Install node modules
+WORKDIR /app
+RUN npm install
+
+# Install sails to global
+RUN npm install sails -g
+RUN npm install sails-mongo
+
+# Start serivce
+RUN sails lift

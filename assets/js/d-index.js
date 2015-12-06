@@ -139,7 +139,7 @@ $(function() {
     $(this).hide();
     $("#processPanel").show();
     $.ajaxFileUpload({
-      url: window.location + "/compare?gender="
+      url: window.location + "compare?gender="
         + $("input[name='gender']:checked").val() + "&starIndex=" + starIndex,
       method: "POST",
       secureuri: false,
