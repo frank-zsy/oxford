@@ -33,6 +33,8 @@ module.exports = {
     "高圆圆": "gaoyuanyuan.marked.png",
     "刘亦菲": "liuyifei.marked.png",
     "Angelababy": "yangying.marked.png"
-  }
+  },
+
+  environment: process.env.NODE_ENV || "development"
 
 };

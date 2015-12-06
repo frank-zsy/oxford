@@ -31,14 +31,17 @@ module.exports.connections = {
   ***************************************************************************/
   mongodb: {
     adapter: 'sails-mongo',
-    host: 'localhost',
+    host: '123.56.86.82',
     port: 27017,
     database: 'oxford'
   },
 
-  aluadaMongo: {
+/*  aluadaMongo: {
     adapter: 'sails-mongo',
-    url: "mongodb://admin:6xW30SRdVbP2@mongodb-frankzhao.myalauda.cn:10018/admin/oxford"
-  }
+    //url: "mongodb://admin:6xW30SRdVbP2@mongodb-frankzhao.myalauda.cn:10278/admin/oxford"
+    host: '123.56.86.82',
+    port: 27017,
+    database: 'oxford'
+  }*/
 
 };
