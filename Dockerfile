@@ -11,7 +11,7 @@ COPY . /app
 RUN yum -y install gcc make gcc-c++ openssl-devel wget
 
 # Install node
-RUN wget http://nodejs.org/dist/v0.10.26/node-v0.12.2.tar.gz
+RUN wget http://nodejs.org/dist/v0.12.2/node-v0.12.2.tar.gz
 RUN tar -zxf node-v0.10.26.tar.gz /node/
 WORKDIR /node
 RUN make && make install
