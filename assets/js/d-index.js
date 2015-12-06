@@ -139,7 +139,7 @@ $(function() {
     $(this).hide();
     $("#processPanel").show();
     $.ajaxFileUpload({
-      url: "http://oxford.frankzhao.org/compare?gender="
+      url: "http://" + window.location + "/compare?gender="
         + $("input[name='gender']:checked").val() + "&starIndex=" + starIndex,
       method: "POST",
       secureuri: false,
