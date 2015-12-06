@@ -18,4 +18,4 @@ RUN npm install sails-mongo
 EXPOSE 80
 
 # Start serivce
-RUN sails lift
+RUN nohup sails lift &
