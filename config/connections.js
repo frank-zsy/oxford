@@ -34,6 +34,11 @@ module.exports.connections = {
     host: 'localhost',
     port: 27017,
     database: 'oxford'
+  },
+
+  aluadaMongo: {
+    adapter: 'sails-mongo',
+    url: "mongodb://admin:6xW30SRdVbP2@mongodb-frankzhao.myalauda.cn:10018/admin/oxford"
   }
 
 };
