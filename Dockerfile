@@ -1,5 +1,5 @@
 # Set the base image to CentOS
-FROM  index.alauda.cn/frankzhao/centbase
+FROM  index.alauda.cn/frankzhao/centbase:final
 
 # File Author / Maintainer
 MAINTAINER Frank
