@@ -4,14 +4,18 @@ FROM tutum/centos:centos6
 # File Author / Maintainer
 MAINTAINER Frank / Frank
 
+# Change work dir
+COPY . /app
+WORKDIR /app
+
 # Install node.js
-sudo yum install node -y
+RUN ["yum",  "install node -y"]
 
 # Install node modules
-npm init
+RUN ["npm", "init"]
 
 # Install sails-mongo and pm2 module
-npm install sails-mongo pm2 -s
+RUN ["npm", "install sails-mongo pm2 -s"]
 
 # Start serivce
-pm2 start app.js --NODE_EVN=production
+RUN ["pm2", "start app.js --NODE_EVN=production"]
