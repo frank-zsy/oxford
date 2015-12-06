@@ -15,5 +15,7 @@ RUN npm install
 RUN npm install sails -g
 RUN npm install sails-mongo
 
+EXPOSE 80
+
 # Start serivce
 RUN sails lift
