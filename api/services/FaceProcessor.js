@@ -1,13 +1,20 @@
 module.exports = {
 
   validate: function (face) {
-    var pose = face.attributes.headPose;
-    for (var i in pose) {
-      if (pose[i] >= 8) {
-        return false;
-      }
+    var res = {error: 0};
+    if (!face || face.length == 0) {
+      console.log("No face detected!");
+      res.error = 1;
+      res.msg = "没有检测的人脸的样子啊！";
+      return res;
     }
-    return true;
+    var pose = face.attributes.headPose;
+    if (Math.abs(pose.yaw) >= 10) {
+      console.log("yaw: " + pose.yaw);
+      res.error = 1;
+      res.msg = "脸都偏过去10度以上了啊！来张正脸吧！"
+    }
+    return res;
   },
 
   baseProcessor: function (face) {
@@ -47,12 +54,32 @@ module.exports = {
       landmarks.noseRightAlarOutTip) * scale);
     // 上下唇间距
     detailInfo.lipDis = Math.round(Utils.pointDis(landmarks.upperLipBottom, landmarks.underLipTop) * scale);
+    // 性别
+    detailInfo.gender = face.attributes.gender;
+    // 年龄
+    detailInfo.age = face.attributes.age;
 
     return detailInfo;
   },
 
   compare: function (uFace, sFace) {
     var compareRes = {};
+
+    var diffRatio = function (a, b) {
+      return Math.abs((a - b) * 100 / b);
+    };
+
+    // 年龄
+    if (uFace.age < 15) {
+      compareRes.age = "小小年纪不好好学习当什么明星！"
+    } else if (Math.abs(uFace.age - sFace.age) > 10) {
+      compareRes.age = "年纪相差也太大了吧！";
+    }
+
+    if (uFace.gender != sFace.gender) {
+      compareRes.gender = "真的不考虑先变个性么？";
+    }
+
     // 眉
     if (uFace.eyebrowWidth < sFace.eyebrowWidth) {
       if (uFace.eyebrowDis > sFace.eyebrowDis) {

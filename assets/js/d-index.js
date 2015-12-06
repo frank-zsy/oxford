@@ -2,35 +2,37 @@ var starIndex = "item-0";
 
 $(function() {
 
+  var starDomain = "http://cdn.frankzhao.org/static/stars/";
+
   var maleList = [
     {
       name: "吴彦祖",
-      path: "/images/Stars/wuyanzu.jpg"
+      path: "wuyanzu.jpg"
     }, {
       name: "黄晓明",
-      path: "/images/Stars/huangxiaoming.jpg"
+      path: "huangxiaoming.jpg"
     }, {
       name: "陈晓",
-      path: "/images/Stars/chenxiao.jpg"
+      path: "chenxiao.jpg"
     }, {
       name: "杨洋",
-      path: "/images/Stars/yangyang.jpg"
+      path: "yangyang.jpg"
     }
   ];
 
   var femaleList = [
     {
-      name: "范冰冰",
-      path: "/images/Stars/fanbingbing.jpg"
+      name: "赵丽颖",
+      path: "zhaoliying.jpg"
     }, {
       name: "高圆圆",
-      path: "/images/Stars/gaoyuanyuan.jpg"
+      path: "gaoyuanyuan.jpg"
     }, {
       name: "刘亦菲",
-      path: "/images/Stars/liuyifei.jpg"
+      path: "liuyifei.jpg"
     }, {
       name: "Angelababy",
-      path: "/images/Stars/yangying.jpg"
+      path: "yangying.jpg"
     }
   ];
 
@@ -42,12 +44,12 @@ $(function() {
     if ($("input[name='gender']:checked").val() == "male") {
       for (var i = 0; i < maleList.length; i++) {
         $(items[i]).children(".carousel-caption").text(maleList[i].name);
-        $(items[i]).children("img").attr("src", maleList[i].path);
+        $(items[i]).children("img").attr("src", starDomain + maleList[i].path);
       }
     } else {
       for (var i = 0; i < femaleList.length; i++) {
         $(items[i]).children(".carousel-caption").text(femaleList[i].name);
-        $(items[i]).children("img").attr("src", femaleList[i].path);
+        $(items[i]).children("img").attr("src", starDomain + femaleList[i].path);
       }
     }
     // 停在第一帧
@@ -58,6 +60,54 @@ $(function() {
     $("#starCarousel").carousel(0);
     $("#starCarousel").carousel('pause');
   };
+
+  var startX = 0, startY = 0;
+
+  //touchstart事件
+  function touchSatrtFunc(evt) {
+    try {
+      evt.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
+
+      var touch = evt.touches[0]; //获取第一个触点
+      var x = Number(touch.pageX); //页面触点X坐标
+      var y = Number(touch.pageY); //页面触点Y坐标
+      //记录触点初始位置
+      startX = x;
+      startY = y;
+    }
+    catch (e) {
+      console.err(e.message);
+    }
+  }
+
+  //touchmove事件，这个事件无法获取坐标
+  function touchMoveFunc(evt) {
+    try {
+      evt.preventDefault(); //阻止触摸时浏览器的缩放、滚动条滚动等
+      var touch = evt.touches[0]; //获取第一个触点
+      var x = Number(touch.pageX); //页面触点X坐标
+      var y = Number(touch.pageY); //页面触点Y坐标
+
+      var threshold = 30;
+      //判断滑动方向
+      if (x - startX > threshold) {
+        $("#starCarousel").carousel("next");
+      } else if (startX - x > threshold) {
+        $("#starCarousel").carousel("prev");
+      }
+    }
+    catch (e) {
+      console.err(e.message);
+    }
+  }
+
+  function bindEvent() {
+    document.getElementById("starCarousel").addEventListener('touchstart', touchSatrtFunc, false);
+    document.getElementById("starCarousel").addEventListener('touchmove', touchMoveFunc, false);
+  }
+
+  bindEvent();
+
 
   $("#male").change(carouselChk);
   $("#female").change(carouselChk);
@@ -101,6 +151,13 @@ $(function() {
         for(var i in res) {
           $(tds[index++]).text(res[i]);
         }
+        if (data.msg.userPath && data.msg.starPath) {
+          $("#userResult").attr("src", data.msg.userPath);
+          $("#starResult").attr("src", data.msg.starPath);
+        }
+        if (data.msg.similarity != undefined) {
+          $("#similarityResult").text("相似度：" + data.msg.similarity + "%");
+        }
         $("#processPanel").hide();
         console.log(res);
         result.show();
@@ -108,7 +165,6 @@ $(function() {
       error: function (data, status, e) {
         var res = data.msg.res;
         var index = 0;
-        console.log(res);
         for(var i in res) {
           $(tds[index++]).text(res[i]);
         }

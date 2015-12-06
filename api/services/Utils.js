@@ -34,7 +34,11 @@ module.exports = {
           return cb(null, faceInfo);
         });
       } else {
-        return cb(serverFeedback.statusCode, null);
+        serverFeedback.on('data', function (chunck) {
+          data += chunck;
+        }).on('end', function () {
+          return cb(serverFeedback.statusCode, data);
+        });
       }
     });
 
