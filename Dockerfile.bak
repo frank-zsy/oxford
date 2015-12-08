@@ -30,14 +30,3 @@ RUN ./configure --prefix=/usr/local/php --enable-fpm --disable-rpath --disable-d
 RUN make && make install
 RUN ln -s /usr/local/php/bin/php /usr/bin/
 RUN php -v
-
-# Install node modules
-WORKDIR /app
-RUN npm install
-
-# Install sails to global
-RUN npm install sails -g
-RUN npm install sails-mongo
-
-# Start serivce
-RUN sails lift
