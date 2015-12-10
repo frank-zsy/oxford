@@ -14,7 +14,7 @@ RUN npm install
 # Install sails to global
 RUN npm install sails -g
 RUN npm install sails-mongo
-RUN npm install pm2
+RUN npm install pm2 -g
 
 EXPOSE 80
 
