@@ -88,7 +88,7 @@ $(function() {
       var x = Number(touch.pageX); //页面触点X坐标
       var y = Number(touch.pageY); //页面触点Y坐标
 
-      var threshold = 30;
+      var threshold = 40;
       //判断滑动方向
       if (x - startX > threshold) {
         $("#starCarousel").carousel("next");
@@ -102,8 +102,8 @@ $(function() {
   }
 
   function bindEvent() {
-    document.getElementById("starCarousel").addEventListener('touchstart', touchSatrtFunc, false);
-    document.getElementById("starCarousel").addEventListener('touchmove', touchMoveFunc, false);
+    document.getElementById("carousel-inner").addEventListener('touchstart', touchSatrtFunc, false);
+    document.getElementById("carousel-inner").addEventListener('touchmove', touchMoveFunc, false);
   }
 
   bindEvent();
